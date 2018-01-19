@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "539efc3616f87bdf637798e9ea4b6125",
+    "content-hash": "656ec0ef4376600567ed059d8e3ced74",
     "packages": [
         {
             "name": "pocketmine/pocketmine-binaryutils",
@@ -107,16 +107,16 @@
         },
         {
             "name": "pocketmine/raklib",
-            "version": "dev-master",
+            "version": "dev-ipv6-connection-support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pmmp/RakLib.git",
-                "reference": "c29bebd2df63680e975d5d129aa25476f3ef86ba"
+                "reference": "35b6e39761b2e131facb0dae5d487645cfb6c371"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pmmp/RakLib/zipball/c29bebd2df63680e975d5d129aa25476f3ef86ba",
-                "reference": "c29bebd2df63680e975d5d129aa25476f3ef86ba",
+                "url": "https://api.github.com/repos/pmmp/RakLib/zipball/35b6e39761b2e131facb0dae5d487645cfb6c371",
+                "reference": "35b6e39761b2e131facb0dae5d487645cfb6c371",
                 "shasum": ""
             },
             "require": {
@@ -138,10 +138,10 @@
             ],
             "description": "A RakNet server implementation written in PHP",
             "support": {
-                "source": "https://github.com/pmmp/RakLib/tree/master",
+                "source": "https://github.com/pmmp/RakLib/tree/ipv6-connection-support",
                 "issues": "https://github.com/pmmp/RakLib/issues"
             },
-            "time": "2018-01-18T18:09:59+00:00"
+            "time": "2018-01-19T17:41:25+00:00"
         }
     ],
     "packages-dev": [],

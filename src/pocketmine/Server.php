@@ -110,6 +110,7 @@ use pocketmine\utils\TextFormat;
 use pocketmine\utils\Utils;
 use pocketmine\utils\UUID;
 use pocketmine\utils\VersionString;
+use raklib\utils\InternetAddress;
 
 /**
  * The class that manages everything
@@ -397,6 +398,10 @@ class Server{
 	 */
 	public function getIp() : string{
 		return $this->getConfigString("server-ip", "0.0.0.0");
+	}
+
+	public function getIpv6() : string{
+		return $this->getConfigString("server-ipv6", "::");
 	}
 
 	/**
@@ -1659,8 +1664,8 @@ class Server{
 
 			$this->enablePlugins(PluginLoadOrder::STARTUP);
 
-			$this->network->registerInterface(new RakLibInterface($this));
-
+			$this->network->registerInterface(new RakLibInterface($this, new InternetAddress($this->getIp() === "" ? "0.0.0.0" : $this->getIp(), $this->getPort(), 4)));
+			$this->network->registerInterface(new RakLibInterface($this, new InternetAddress($this->getIpv6() === "" ? "::" : $this->getIpv6(), $this->getPort(), 6)));
 
 			LevelProviderManager::addProvider(Anvil::class);
 			LevelProviderManager::addProvider(McRegion::class);
