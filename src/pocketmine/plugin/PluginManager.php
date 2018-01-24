@@ -730,6 +730,10 @@ class PluginManager{
 				$this->server->getLogger()->logException($e);
 			}
 		}
+
+		if($event->isCancellable() && !$event->isCancelled() && $event->isFinallyCancelled()){
+			$event->setCancelled();
+		}
 	}
 
 	/**

@@ -40,6 +40,8 @@ abstract class Event{
 	protected $eventName = null;
 	/** @var bool */
 	private $isCancelled = false;
+	/** @var bool */
+	private $isFinallyCancelled = false;
 
 	/**
 	 * @return string
@@ -76,6 +78,33 @@ abstract class Event{
 		}
 
 		$this->isCancelled = $value;
+	}
+
+	/**
+	 * If an event is set to finally-cancelled, the event will not be cancelled immediately, but will be cancelled just
+	 * before the flow returns to {@link PluginManager::callEvent()}'s caller.
+	 *
+	 * In other words, passing true to this function makes sure the event ends up cancelled, but this is not visible to other plugins from {@link Event::isCancelled()}.
+	 *
+	 * @param bool $value
+	 */
+	public function setFinallyCancelled(bool $value = true) : void{
+		if(!$this->isCancellable()){
+			throw new \BadMethodCallException("Event is not Cancellable");
+		}
+
+		$this->isFinallyCancelled = $value;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isFinallyCancelled() : bool{
+		if(!$this->isCancellable()){
+			throw new \BadMethodCallException("Event is not Cancellable");
+		}
+
+		return $this->isFinallyCancelled;
 	}
 
 	/**
