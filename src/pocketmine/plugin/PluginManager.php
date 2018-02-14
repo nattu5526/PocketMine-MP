@@ -36,6 +36,7 @@ use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\permission\Permissible;
 use pocketmine\permission\Permission;
 use pocketmine\Server;
+use pocketmine\utils\MainLogger;
 
 /**
  * Manages all the plugins, Permissions and Permissibles
@@ -724,13 +725,13 @@ class PluginManager{
 				}
 			}
 		}
-		if($event->isAsyncComplete()){
+		if($event->isAsync() && $event->isAsyncComplete()){
 			throw new \InvalidStateException("Attempt to call an async event that is still executing");
 		}
 		$event->setAsyncQueue($queue, $onCompletion);
 		$event->startAsyncQueue($this->server->getTick());
 		if(!$event->isAsyncComplete()){
-			assert(!isset($this->permissions[spl_object_hash($event)]));
+			assert(!isset($this->pausedEvents[spl_object_hash($event)]));
 			$this->pausedEvents[spl_object_hash($event)] = $event; // we do not allow duplicate events
 		}
 	}
