@@ -123,6 +123,12 @@ class PlayerInventory extends EntityInventory{
 		return $this->itemInHandIndex;
 	}
 
+	public function setHotbarSlotIndex($index, $slot){
+		if($index >= 0 and $index < $this->getHotbarSize() and $slot >= -1 and $slot < $this->getSize()){
+			$this->hotbar[$index] = $slot;
+		}
+	}
+	
 	/**
 	 * Sets which hotbar slot the player is currently loading.
 	 *
